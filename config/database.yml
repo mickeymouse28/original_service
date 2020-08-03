@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   database: tabilog_production
   username: tabilog
   password: <%= ENV['TABILOG_DATABASE_PASSWORD'] %>
