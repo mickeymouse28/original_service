@@ -7,11 +7,16 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>
+          <% if request.url.include?('logs') %>
+            <li class="nav-item"><%= link_to 'New Log', new_log_path, class: 'nav-link' %></li>
+          <% elsif request.url.include?('plans') %>
+            <li><a href="">New Plan</a></li>
+          <% end %>  
           <li class="nav-item"><%= link_to 'Users', users_path, class: 'nav-link' %></li>
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%= current_user.name %></a>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to 'My page', user_path(current_user) %></li>
+              <li class="dropdown-item"><%= link_to 'My page', logs_user_path(current_user) %></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
             </ul>

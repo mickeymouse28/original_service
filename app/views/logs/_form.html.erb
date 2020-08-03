@@ -1,0 +1,53 @@
+<div class="row mt-3">
+  <div class="col-6">
+    <%= form_with(model: log, local: true) do |f| %>
+      <% if log.errors.any? %>
+        <div id="error_explanation" class="alert alert-warning">
+          <ul class="mb-0">
+            <% log.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="form-group">
+        <%= f.label :placename, '旅した場所' %>
+        <%= f.text_field :placename, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :date, '旅した日' %>
+        <%= f.text_field :date, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :content, 'コメント' %>
+        <%= f.text_area :content, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :image, '写真' %><br>
+        <%= image_tag @log.image.url if @log.image? %>
+        <%= f.file_field :image %>
+        <%= f.hidden_field :image_cache %>
+      </div>
+      <!--div class="field">
+      <!-- 既存レコード(DBに保存されている)かつ、画像が存在する場合 -->
+        <!--% if @log.persisted? && @log.image? %>
+        <label>
+        <!--%= f.check_box :remove_image %>
+          画像を削除
+        </label>
+        <!--% end %>
+      </div -->
+      <div class="form-group">
+        <%= f.label :rate, '満足度' %><br>
+        <%= f.select(:rate) do %>
+          <% (1..5).each do |value| %>
+            <%= content_tag(:option, value, value: value) %>
+          <% end %>
+        <% end %>
+      </div>
+      
+      <%= f.submit 'Create Post', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

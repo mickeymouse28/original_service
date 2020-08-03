@@ -1,0 +1,34 @@
+<h2>ID: <%= @log.id %>のLog詳細ページ</h2>
+
+<div class="container">
+<table class="table table-bordered">
+  <tr class="row mx-0">
+    <th class="col-md-2">旅した場所</th>
+    <td class="col-md-10"><%= @log.placename %></td>
+  </tr>
+  <tr class="row mx-0">
+    <th class="col-md-2">旅した日</th>
+    <td class="col-md-10"><%= @log.date %></td>
+  </tr>
+  <tr class="row mx-0">
+    <th class="col-md-2">コメント</th>
+    <td class="col-md-10"><%= @log.content %></td>
+  </tr>
+  <tr class="row mx-0">
+    <th class="col-md-2">思い出画像</th>
+    <td class="col-md-10"><%= image_tag @log.image.url if @log.image? %></td>
+  </tr>
+  <tr class="row mx-0">
+    <th class="col-md-2">満足度</th>
+    <td class="col-md-10"><%= '★' * @log.rate %></td>
+  </tr>
+</table>
+</div>
+
+  <div>
+    <% if current_user == @log.user %>
+      <%= link_to "edit", edit_log_path(@log.id), class: 'btn btn-primary btn-sm' %>
+      <%= link_to "delete", @log, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+    <% end %>
+    <a href="" class="btn btn-primary btn-sm">favorite</a>
+  </div>

@@ -1,0 +1,35 @@
+<div class="row">
+  <aside class="col-sm-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><%= @user.name %></h3>
+      </div>
+      <div class="card-body">
+        <img class="rounded img-fluid" src="<%= gravatar_url(@user, { size: 500 }) %>" alt="">
+      </div>
+    </div>
+  </aside>
+  <div class="col-sm-8">
+    <ul class="nav nav-tabs nav-justified mb-3">
+      <li class="nav-item"><a href="<%= logs_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(logs_user_path(@user)) %>">Logs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Plans</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Favorites</a></li>
+    </ul>
+    <ul class="list-unstyled">
+      <% if @count_logs == 0 %>
+        <div>Logはまだありません。</div>
+      <% end %>
+      <% @logs.each do |log| %>
+        <li class="media mb-3">
+          <div class="media-body">
+            <div>
+              <%= link_to log.id, log_path(log.id) %> <span class="text-muted">posted at <%= log.created_at %></span>
+            </div>
+            <%= render 'logs/logs', logs: log %>
+          </div>
+        </li>
+      <% end %>
+      <%= paginate @logs %>
+    </ul>
+  </div>
+</div>

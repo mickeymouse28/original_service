@@ -1,0 +1,13 @@
+  <div>
+    <p><%= logs.placename %></p>
+    <p><%= logs.content %></p>
+    <p><%= image_tag logs.image.url if logs.image? %></p>
+    <p><%= '★' * logs.rate %></p>
+  </div>
+  <div>
+    <% if current_user == logs.user %>
+      <%= link_to "edit", edit_log_path(logs.id), class: 'btn btn-primary btn-sm' %>
+      <%= link_to "delete", logs, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+    <% end %>
+    <a href="" class="btn btn-primary btn-sm">favorite</a>
+  </div>
