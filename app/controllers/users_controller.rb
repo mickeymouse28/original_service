@@ -28,6 +28,9 @@ class UsersController < ApplicationController
   end
   
   def plans
+    @user = User.find(params[:id])
+    @plans = @user.plans.order(id: :desc).page(params[:page])
+    counts(@user)
   end
   
   def likes

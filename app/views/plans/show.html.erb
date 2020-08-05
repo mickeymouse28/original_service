@@ -1,0 +1,33 @@
+<h2>ID: <%= @plan.id %>のPlan詳細ページ</h2>
+
+<div class="container">
+<table class="table table-bordered">
+  <tr class="row mx-0">
+    <th class="col-md-2">いつか旅したい場所</th>
+    <td class="col-md-10"><%= @plan.placename %></td>
+  </tr>
+  <tr class="row mx-0">
+    <th class="col-md-2">旅する目標の日</th>
+    <td class="col-md-10"><%= @plan.date %></td>
+  </tr>
+  <tr class="row mx-0">
+    <th class="col-md-2">コメント</th>
+    <td class="col-md-10"><%= @plan.content %></td>
+  </tr>
+  <tr class="row mx-0">
+    <th class="col-md-2">旅したい場所の写真</th>
+    <td class="col-md-10"><%= image_tag @plan.image.url if @plan.image? %></td>
+  </tr>
+  <tr class="row mx-0">
+    <th class="col-md-2">期待値</th>
+    <td class="col-md-10"><%= '★' * @plan.rate %></td>
+  </tr>
+</table>
+</div>
+
+  <div>
+    <% if current_user == @plan.user %>
+      <%= link_to "edit", edit_plan_path(@plan.id), class: 'btn btn-primary btn-sm' %>
+      <%= link_to "delete", @plan, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+    <% end %>
+  </div>

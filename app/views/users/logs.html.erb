@@ -12,7 +12,7 @@
   <div class="col-sm-8">
     <ul class="nav nav-tabs nav-justified mb-3">
       <li class="nav-item"><a href="<%= logs_user_path(@user) %>" class="nav-link <%= 'active' if current_page?(logs_user_path(@user)) %>">Logs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Plans</a></li>
+      <li class="nav-item"><a href="<%= plans_user_path(@user) %>" class="nav-link">Plans</a></li>
       <li class="nav-item"><a href="#" class="nav-link">Favorites</a></li>
     </ul>
     <ul class="list-unstyled">

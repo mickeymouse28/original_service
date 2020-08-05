@@ -29,6 +29,10 @@ class LogsController < ApplicationController
   def update
     @log = Log.find(params[:id])
     
+    if @log.remove_image
+      @log.remove_image!
+    end
+    
     if @log.update(log_params)
       flash[:success] = 'Logは正常に更新されました'
       redirect_to logs_user_path(@log.user)
@@ -49,6 +53,6 @@ class LogsController < ApplicationController
   private
   
   def log_params
-    params.require(:log).permit(:placename, :date, :content, :image, :rate)
+    params.require(:log).permit(:placename, :date, :content, :image, :remove_image, :image_cache, :rate)
   end
 end

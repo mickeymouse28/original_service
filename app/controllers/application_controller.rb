@@ -12,5 +12,6 @@ class ApplicationController < ActionController::Base
   
   def counts(user)
     @count_logs = user.logs.count
+    @count_plans = user.plans.count
   end
 end

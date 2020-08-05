@@ -1,0 +1,12 @@
+  <div>
+    <p><%= plans.placename %></p>
+    <p><%= plans.content %></p>
+    <p><%= image_tag plans.image.url if plans.image? %></p>
+    <p><%= '★' * plans.rate %></p>
+  </div>
+  <div>
+    <% if current_user == plans.user %>
+      <%= link_to "edit", edit_plan_path(plans.id), class: 'btn btn-primary btn-sm' %>
+      <%= link_to "delete", plans, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+    <% end %>
+  </div>

@@ -10,7 +10,7 @@
           <% if request.url.include?('logs') %>
             <li class="nav-item"><%= link_to 'New Log', new_log_path, class: 'nav-link' %></li>
           <% elsif request.url.include?('plans') %>
-            <li><a href="">New Plan</a></li>
+            <li class="nav-item"><%= link_to 'New Plan', new_plan_path, class: 'nav-link' %></li>
           <% end %>  
           <li class="nav-item"><%= link_to 'Users', users_path, class: 'nav-link' %></li>
           <li class="nav-item dropdown">
