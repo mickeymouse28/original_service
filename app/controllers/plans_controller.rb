@@ -1,8 +1,8 @@
 class PlansController < ApplicationController
   before_action :require_user_logged_in
+  before_action :set_plan, only: [:show, :edit, :update, :destroy]
   
   def show
-    @plan = Plan.find(params[:id])
   end
 
   def new
@@ -23,12 +23,9 @@ class PlansController < ApplicationController
   end
 
   def edit
-    @plan = Plan.find(params[:id])
   end
 
   def update
-    @plan = Plan.find(params[:id])
-    
     if @plan.remove_image
       @plan.remove_image!
     end
@@ -43,7 +40,6 @@ class PlansController < ApplicationController
   end
 
   def destroy
-    @plan = Plan.find(params[:id])
     @plan.destroy
     
     flash[:success] = 'Logは正常に削除されました'
@@ -51,6 +47,11 @@ class PlansController < ApplicationController
   end
   
   private
+  
+  def set_plan
+    @plan = Plan.find(params[:id])
+  end
+
   
   def plan_params
     params.require(:plan).permit(:placename, :date, :content, :image, :remove_image, :image_cache, :rate)

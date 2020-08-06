@@ -1,8 +1,8 @@
 class LogsController < ApplicationController
   before_action :require_user_logged_in
+  before_action :set_log, only: [:show, :edit, :update, :destroy]
   
   def show
-    @log = Log.find(params[:id])
   end
   
   def new
@@ -23,12 +23,9 @@ class LogsController < ApplicationController
   end
 
   def edit
-    @log = Log.find(params[:id])
   end
 
   def update
-    @log = Log.find(params[:id])
-    
     if @log.remove_image
       @log.remove_image!
     end
@@ -43,7 +40,6 @@ class LogsController < ApplicationController
   end
 
   def destroy
-    @log = Log.find(params[:id])
     @log.destroy
     
     flash[:success] = 'Logは正常に削除されました'
@@ -51,6 +47,10 @@ class LogsController < ApplicationController
   end
   
   private
+  
+  def set_log
+    @log = Log.find(params[:id])
+  end
   
   def log_params
     params.require(:log).permit(:placename, :date, :content, :image, :remove_image, :image_cache, :rate)

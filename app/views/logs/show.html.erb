@@ -25,10 +25,12 @@
 </table>
 </div>
 
-  <div>
+  <div class="btn-group">
     <% if current_user == @log.user %>
-      <%= link_to "edit", edit_log_path(@log.id), class: 'btn btn-primary btn-sm' %>
-      <%= link_to "delete", @log, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+      <%= link_to "edit", edit_log_path(@log.id), class: 'btn btn-primary btn-sm mr-1' %>
+      <%= link_to "delete", @log, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-secondary btn-sm mr-1' %>
     <% end %>
     <%= render 'favorites/favorite_button', log: @log %>
+    <%= link_to "back", logs_user_path(@log.user.id), class: 'btn btn-primary btn-sm mr-1' %>
+
   </div>

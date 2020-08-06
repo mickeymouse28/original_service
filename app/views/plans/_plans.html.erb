@@ -7,6 +7,6 @@
   <div>
     <% if current_user == plans.user %>
       <%= link_to "edit", edit_plan_path(plans.id), class: 'btn btn-primary btn-sm' %>
-      <%= link_to "delete", plans, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+      <%= link_to "delete", plans, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-secondary btn-sm' %>
     <% end %>
   </div>

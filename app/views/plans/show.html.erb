@@ -28,6 +28,7 @@
   <div>
     <% if current_user == @plan.user %>
       <%= link_to "edit", edit_plan_path(@plan.id), class: 'btn btn-primary btn-sm' %>
-      <%= link_to "delete", @plan, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+      <%= link_to "delete", @plan, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-secondary btn-sm' %>
+      <%= link_to "back", plans_user_path(@plan.user.id), class: 'btn btn-primary btn-sm' %>
     <% end %>
   </div>
