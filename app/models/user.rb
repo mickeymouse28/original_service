@@ -8,4 +8,21 @@ class User < ApplicationRecord
   
   has_many :logs
   has_many :plans
+  has_many :favorites
+  has_many :likes, through: :favorites, source: :log
+  
+  def favorite(log)
+    self.favorites.find_or_create_by(log_id: log.id)
+  end
+  
+  def unfavorite(log)
+    favorite = self.favorites.find_by(log_id: log.id)
+    favorite.destroy if favorite
+  end
+  
+  def favorited?(log)
+    self.likes.include?(log)
+  end
+
+
 end

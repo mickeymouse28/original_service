@@ -30,5 +30,5 @@
       <%= link_to "edit", edit_log_path(@log.id), class: 'btn btn-primary btn-sm' %>
       <%= link_to "delete", @log, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
     <% end %>
-    <a href="" class="btn btn-primary btn-sm">favorite</a>
+    <%= render 'favorites/favorite_button', log: @log %>
   </div>

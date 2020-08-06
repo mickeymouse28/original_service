@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   
   resources :logs, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :plans, only: [:show, :new, :create, :edit, :update, :destroy]
+  resources :favorites, only: [:create, :destroy]
 end

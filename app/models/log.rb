@@ -6,4 +6,7 @@ class Log < ApplicationRecord
   validates :content, presence: true, length: { maximum: 255 }
   
   mount_uploader :image, ImageUploader
+  
+  has_many :favorites
+  has_many :likes, through: :favorites, source: :user, dependent: :destroy
 end
