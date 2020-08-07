@@ -16,9 +16,9 @@ class PlansController < ApplicationController
       flash[:success] = '旅のプランを登録しました'
       redirect_to plans_user_path(@plan.user)
     else
-      @plan = current_user.plans.order(id: :desc).page(params[:page])
+      @plans = current_user.plans.order(id: :desc).page(params[:page])
       flash.now[:danger] = '旅のプランの登録に失敗しました'
-      render 'toppages/index'
+      render :new
     end
   end
 

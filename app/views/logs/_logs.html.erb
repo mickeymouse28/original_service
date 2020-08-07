@@ -4,7 +4,7 @@
     <p><%= image_tag logs.image.url if logs.image? %></p>
     <p><%= '★' * logs.rate %></p>
   </div>
-  <div class="btn-group">
+  <div class="btn-toolbar">
     <% if current_user == logs.user %>
       <%= link_to "edit", edit_log_path(logs.id), class: 'btn btn-primary btn-sm mr-1' %>
       <%= link_to "delete", logs, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-secondary btn-sm mr-1' %>

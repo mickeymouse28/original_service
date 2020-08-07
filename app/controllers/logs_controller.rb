@@ -18,7 +18,7 @@ class LogsController < ApplicationController
     else
       @logs = current_user.logs.order(id: :desc).page(params[:page])
       flash.now[:danger] = '旅のログの登録に失敗しました'
-      render 'toppages/index'
+      render :new
     end
   end
 
