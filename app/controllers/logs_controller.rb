@@ -1,6 +1,7 @@
 class LogsController < ApplicationController
   before_action :require_user_logged_in
   before_action :set_log, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   
   def show
   end
@@ -54,5 +55,12 @@ class LogsController < ApplicationController
   
   def log_params
     params.require(:log).permit(:placename, :date, :content, :image, :remove_image, :image_cache, :rate)
+  end
+  
+  def correct_user
+    @log = current_user.logs.find_by(id: params[:id])
+    unless @log
+      redirect_to root_url
+    end
   end
 end

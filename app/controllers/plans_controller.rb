@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
   before_action :require_user_logged_in
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
   
   def show
   end
@@ -55,5 +56,12 @@ class PlansController < ApplicationController
   
   def plan_params
     params.require(:plan).permit(:placename, :date, :content, :image, :remove_image, :image_cache, :rate)
+  end
+  
+  def correct_user
+    @plan = current_user.plans.find_by(id: params[:id])
+    unless @plan
+      redirect_to root_url
+    end
   end
 end
