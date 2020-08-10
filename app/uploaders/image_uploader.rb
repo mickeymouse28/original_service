@@ -33,6 +33,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
   
   process resize_to_limit: [150, 150]
+  
+  process :convert => 'jpg'
+  
+  # jpg,jpeg,gif,pngしか受け付けない
+  def extension_white_list
+    %w(jpg jpeg gif png)
+  end
+
 
   # Create different versions of your uploaded files:
   # version :thumb do

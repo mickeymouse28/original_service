@@ -17,7 +17,7 @@ class LogsController < ApplicationController
       flash[:success] = '旅のログを登録しました'
       redirect_to logs_user_path(@log.user)
     else
-      @logs = current_user.logs.order(id: :desc).page(params[:page])
+      #@logs = current_user.logs.order(id: :desc).page(params[:page])
       flash.now[:danger] = '旅のログの登録に失敗しました'
       render :new
     end

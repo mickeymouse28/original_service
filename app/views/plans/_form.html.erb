@@ -28,7 +28,11 @@
         <%= f.file_field :image %><br>
         <% if plan.image? %>
           <div class="mt-3">変更前の画像</div>
-          <%= image_tag plan.image.url %><br>
+          <% if plan.image_cache %>
+            <%= image_tag "/#{plan.image.cache_path}" %>
+          <% else %>
+            <%= image_tag plan.image.url if plan.image? %><br>
+          <% end %>
           <div><%= f.check_box :remove_image %>画像を削除する</div>
         <% end %>
         <%= f.hidden_field :image_cache %>
